@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+	<h1>{% if seo.header %}{{ seo.header }}{% else %}{{ files_category.name }}{% endif %}</h1>
+	<div class='b-files-list'>
+		{% for file in files_category.category_files.all %}
+			<a class='b-file-list__link' href='{{ file.file.url }}'>{{ file.name }}</a><br>
+		{% endfor %}
+	</div>
+{% endblock %}
