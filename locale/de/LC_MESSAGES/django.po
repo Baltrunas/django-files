@@ -24,11 +24,11 @@ msgstr ""
 
 #: models.py:20 models.py:24 models.py:56 models.py:60
 msgid "Description"
-msgstr ""
+msgstr "Beschreibung"
 
 #: models.py:26
 msgid "Slug"
-msgstr ""
+msgstr "Webserverebene"
 
 #: models.py:28
 msgid "Special"
@@ -36,31 +36,31 @@ msgstr ""
 
 #: models.py:29 models.py:67
 msgid "Public"
-msgstr ""
+msgstr "veröffentlichen"
 
 #: models.py:30 models.py:68
 msgid "Created At"
-msgstr ""
+msgstr "erstellt am"
 
 #: models.py:31 models.py:69
 msgid "Updated At"
-msgstr ""
+msgstr "aktualisiert am"
 
 #: models.py:48
 msgid "Files Category"
-msgstr ""
+msgstr "Dateikategorie"
 
 #: models.py:49
 msgid "Files Categories"
-msgstr ""
+msgstr "Dateikategorien"
 
 #: models.py:62
 msgid "Category Group"
-msgstr ""
+msgstr "Gruppenkategorie"
 
 #: models.py:64 models.py:89
 msgid "File"
-msgstr ""
+msgstr "Dokument"
 
 #: models.py:65
 msgid "Downloads"
@@ -68,4 +68,4 @@ msgstr ""
 
 #: models.py:90
 msgid "Files"
-msgstr ""
+msgstr "Dokumente"
