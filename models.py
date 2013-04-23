@@ -68,9 +68,13 @@ class File(BaseModel):
 	created_at = models.DateTimeField(verbose_name=_('Created At'), auto_now_add=True)
 	updated_at = models.DateTimeField(verbose_name=_('Updated At'), auto_now=True)
 
-	def fownload(self):
-		self.fownload += 1
+	def download(self):
+		self.downloads += 1
 		self.save()
+
+	@models.permalink
+	def get_absolute_url(self):
+		return ('files_download', (), {'id': self.id})
 
 	def __unicode__(self):
 		if multilingual:
@@ -80,9 +84,6 @@ class File(BaseModel):
 				return self.safe_translation_getter('name', 'MyMode: %s' % self.pk)
 		else:
 			return self.name
-
-	# def get_absolute_url(self):
-		# return self.url
 
 	class Meta:
 		ordering = ['created_at']
