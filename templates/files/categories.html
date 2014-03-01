@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+
+	<h1>{% firstof seo.header 'Files' %}</h1>
+
+	<div class='b-files-categories'>
+		{% for category in categories %}
+			<div class='b-files-category'>
+				<a href='{{ category.get_absolute_url }}' class='b-files-category__link'>
+					{{ category.name }}
+				</a>
+				{% if category.description %}
+					<div class='b-files-category__description'>{{ category.description }}</div>
+				{% endif %}
+			</div>
+		{% endfor %}
+	</div>
+
+{% endblock %}

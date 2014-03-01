@@ -1,27 +1,11 @@
 # -*- coding: utf-8 -*
 from django.db import models
-from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 
-if 'hvad' in settings.INSTALLED_APPS and hasattr(settings, 'LANGUAGES'):
-	from hvad.models import TranslatableModel, TranslatedFields
-	BaseModel = TranslatableModel
-	multilingual = True
-else:
-	BaseModel = models.Model
-	multilingual = False
-
-
-class Category(BaseModel):
-	if multilingual:
-		translations = TranslatedFields(
-			name=models.CharField(verbose_name=_('Name'), max_length=255),
-			description=models.TextField(verbose_name=_('Description'), blank=True)
-		)
-	else:
-		name = models.CharField(verbose_name=_('Name'), max_length=255)
-		description = models.TextField(verbose_name=_('Description'), blank=True)
+class Category(models.Model):
+	name = models.CharField(verbose_name=_('Name'), max_length=255)
+	description = models.TextField(verbose_name=_('Description'), blank=True)
 
 	slug = models.SlugField(verbose_name=_('Slug'), unique=True)
 
@@ -30,18 +14,15 @@ class Category(BaseModel):
 	created_at = models.DateTimeField(verbose_name=_('Created At'), auto_now_add=True)
 	updated_at = models.DateTimeField(verbose_name=_('Updated At'), auto_now=True)
 
+	def get_files(self):
+		return self.files.filter(public=True)
+
 	@models.permalink
 	def get_absolute_url(self):
 		return ('files_category', (), {'slug': self.slug})
 
 	def __unicode__(self):
-		if multilingual:
-			try:
-				return self.safe_translation_getter('name', 'MyMode: %s' % self.name)
-			except:
-				return self.safe_translation_getter('name', 'MyMode: %s' % self.pk)
-		else:
-			return self.name
+		return self.name
 
 	class Meta:
 		ordering = ['created_at']
@@ -49,17 +30,11 @@ class Category(BaseModel):
 		verbose_name_plural = _('Files Categories')
 
 
-class File(BaseModel):
-	if multilingual:
-		translations = TranslatedFields(
-			name=models.CharField(verbose_name=_('Name'), max_length=255),
-			description=models.TextField(verbose_name=_('Description'), blank=True)
-		)
-	else:
-		name = models.CharField(verbose_name=_('Name'), max_length=255)
-		description = models.TextField(verbose_name=_('Description'), blank=True)
+class File(models.Model):
+	name = models.CharField(verbose_name=_('Name'), max_length=255)
+	description = models.TextField(verbose_name=_('Description'), blank=True)
 
-	category = models.ForeignKey(Category, related_name='category_files', verbose_name=_('Category Group'))
+	category = models.ForeignKey(Category, related_name='files', verbose_name=_('Category'))
 
 	file = models.FileField(verbose_name=_('File'), upload_to='files', blank=True)
 	downloads = models.PositiveIntegerField(verbose_name=_('Downloads'), editable=False, default=0)
@@ -72,18 +47,17 @@ class File(BaseModel):
 		self.downloads += 1
 		self.save()
 
+	def filetype(self):
+		filename = self.file.url.split('.')
+		filetype = filename[len(filename) - 1].lower()
+		return filetype
+
 	@models.permalink
 	def get_absolute_url(self):
 		return ('files_download', (), {'id': self.id})
 
 	def __unicode__(self):
-		if multilingual:
-			try:
-				return self.safe_translation_getter('name', 'MyMode: %s' % self.name)
-			except:
-				return self.safe_translation_getter('name', 'MyMode: %s' % self.pk)
-		else:
-			return self.name
+		return self.name
 
 	class Meta:
 		ordering = ['created_at']

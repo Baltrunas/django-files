@@ -1,0 +1,182 @@
+/**
+ **************************
+ CATRGORY LIST
+ **************************
+*/
+.b-files-categories {
+
+}
+
+.b-files-category {
+
+}
+
+.b-files-category__link {
+
+}
+
+.b-files-category__description {
+
+}
+
+
+/**
+ **************************
+ FILES LIST
+ **************************
+*/
+.b-files {
+	display: block;
+}
+
+.b-file {
+	display: block;
+	margin-bottom: 15px;
+	padding-left: 40px;
+
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-size: 32px;
+}
+
+.b-file__link {
+	font-size: 16px;
+}
+
+.b-file__description {
+	font-size: 12px;
+}
+
+.b-file__info {
+	font-size: 10px;
+}
+
+.b-file__downloads {
+
+}
+
+.b-file__updated_at {
+
+}
+
+
+/**
+ **************************
+ FILE TYPE MODIFERS
+ **************************
+*/
+.m_pdf {
+	background-image: url(../img/file-type-icons/acrobat.png) ;
+}
+
+.m_doc, .m_docx {
+	background-image: url(../img/file-type-icons/word.png) ;
+}
+
+.m_wav {
+	background-image: url(../img/file-type-icons/wav.png);
+}
+
+.m_mp4, .m_avi, .m_mov {
+	background-image: url(../img/file-type-icons/video.png);
+}
+
+.m_txt {
+	background-image: url(../img/file-type-icons/txt.png);
+}
+
+.m_ttf {
+	background-image: url(../img/file-type-icons/ttf.png);
+}
+
+.m_torrent {
+	background-image: url(../img/file-type-icons/torrent.png);
+}
+
+.m_svg {
+	background-image: url(../img/file-type-icons/svg.png);
+}
+
+.m_ppj {
+	background-image: url(../img/file-type-icons/premiere-pro.png);
+}
+
+.m_ppt, .m_pptx {
+	background-image: url(../img/file-type-icons/powerpoint.png);
+}
+
+.m_png {
+	background-image: url(../img/file-type-icons/png.png);
+}
+
+.m_php {
+	background-image: url(../img/file-type-icons/php.png);
+}
+
+.m_psd {
+	background-image: url(../img/file-type-icons/photoshop.png);
+}
+
+.m_oft {
+	background-image: url(../img/file-type-icons/otf.png);
+}
+
+.m_mp3, .m_flac, .m_m4a {
+	background-image: url(../img/file-type-icons/music.png);
+}
+
+.m_js {
+	background-image: url(../img/file-type-icons/js.png);
+}
+
+.m_jpg {
+	background-image: url(../img/file-type-icons/jpg.png);
+}
+
+.m_indd {
+	background-image: url(../img/file-type-icons/indesign.png);
+}
+
+.m_ai {
+	background-image: url(../img/file-type-icons/illustrator.png);
+}
+
+.m_html {
+	background-image: url(../img/file-type-icons/html.png);
+}
+
+.m_gif {
+	background-image: url(../img/file-type-icons/gif.png);
+}
+
+.m_fla, .m_flv {
+	background-image: url(../img/file-type-icons/flash.png);
+}
+
+.m_fw {
+	background-image: url(../img/file-type-icons/fireworks.png);
+}
+
+.m_xls, .m_xlsx {
+	background-image: url(../img/file-type-icons/excel.png);
+}
+
+.m_dw {
+	background-image: url(../img/file-type-icons/dreamweaver.png);
+}
+
+.m_css {
+	background-image: url(../img/file-type-icons/css.png);
+}
+
+.m_au {
+	background-image: url(../img/file-type-icons/audition.png);
+}
+
+.m_rar, .m_zip, .m_7z, .m_tar, .m_gz {
+	background-image: url(../img/file-type-icons/archive.png);
+}
+
+.m_aep {
+	background-image: url(../img/file-type-icons/after-effects.png);
+}
