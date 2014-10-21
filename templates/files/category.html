@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-
 {% load i18n %}
 
 {% block content %}
-<div class='b-files'>
-	<h1>{% if seo.header %}{{ seo.header }}{% else %}{{ category.name }}{% endif %}</h1>
 
-	{% for file in category.category_files.all %}
-		<div class='b-file m_pdf'>
+<div class='b-files'>
+	<h1>{% firstof seo.header category.name %}</h1>
+
+	{% for file in category.get_files %}
+		<div class='b-file m_{{ file.filetype }}'>
 			<a class='b-file__link' href='{{ file.get_absolute_url }}'>{{ file.name }}</a>
 			<div class='b-file__description'>{{ file.description }}</div>
 
@@ -24,4 +24,5 @@
 	{% endfor %}
 
 </div><!-- b-files -->
+
 {% endblock %}

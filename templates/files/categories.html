@@ -4,7 +4,8 @@
 
 {% block content %}
 <div class='b-files'>
-	<h1>{% if seo.header %}{{ seo.header }}{% else %}{% trans "Files" %}{% endif %}</h1>
+
+	<h1>{% firstof seo.header 'Files' %}</h1>
 
 	<ul class='b-files-categories'>
 		{% for category in categories %}
@@ -13,14 +14,14 @@
 					{{ category.name }}
 				</a>
 				{% if category.description %}
-				<span class='b-files-category__descrription'>
+				<div class='b-files-category__descrription'>
 					{{ category.description }}
-				</span>
+				</div>
 				{% endif %}
-				</p>
 			</li>
 		{% endfor %}
 	</ul><!-- b-files-categories -->
 
 </div><!-- b-files -->
+
 {% endblock %}
