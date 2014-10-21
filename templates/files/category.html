@@ -2,41 +2,26 @@
 
 {% load i18n %}
 
-{% block aside %}
-	<div class="b-files-categories block block-aside">
-		<big class='b-files-categories__title'>{% trans "Categories" %}</big><br>
-		{% for category in category_list %}
-			<a href="{{ category.get_absolute_url }}" class='b-files-categories__url'>
-				{{ category.name }}
-			</a>
-		{% endfor %}
-	</div>
-{% endblock %}
-
 {% block content %}
-	<h1>{% if seo.header %}{{ seo.header }}{% else %}{{ files_category.name }}{% endif %}</h1>
-	<table class='b-files-list'>
-		<thead>
-			<tr>
-				<th>{% trans "Title" %}</th>
-				<th>{% trans "Description" %}</th>
-				<th>{% trans "Updated At" %}</th>
-			</tr>
-		</thead>
-		<tbody>
-		{% for file in files_category.category_files.all %}
-			<tr class="b-files-file">
-				<td>
-					<a class='b-file-list__link' href='{{ file.get_absolute_url }}'>{{ file.name }}</a>
-					<p style='font-size: 10px;'>
-						<br><b>{% trans "Downloads" %}</b>: {{ file.downloads }}<br>
-					</p>
+<div class='b-files'>
+	<h1>{% if seo.header %}{{ seo.header }}{% else %}{{ category.name }}{% endif %}</h1>
 
-				</td>
-				<td>{{ file.description }}</td>
-				<td><time>{{ file.updated_at|date }}</time></td>
-			</tr>
-		{% endfor %}
-		</tbody>
-	</table>
+	{% for file in category.category_files.all %}
+		<div class='b-file m_pdf'>
+			<a class='b-file__link' href='{{ file.get_absolute_url }}'>{{ file.name }}</a>
+			<div class='b-file__description'>{{ file.description }}</div>
+
+			<div class='b-file__info'>
+				<span class='b-file__downloads'>
+					<b>{% trans "Downloads" %}</b>: {{ file.downloads }}
+				</span>
+				<span class='b-file__updated_at'>
+					<b>{% trans "Updated At" %}</b>:
+					<time>{{ file.updated_at|date }}</time>
+				</span>
+			</div>
+		</div><!-- b-file -->
+	{% endfor %}
+
+</div><!-- b-files -->
 {% endblock %}

@@ -3,17 +3,24 @@
 {% load i18n %}
 
 {% block content %}
+<div class='b-files'>
 	<h1>{% if seo.header %}{{ seo.header }}{% else %}{% trans "Files" %}{% endif %}</h1>
-	<div class='b-files-category-list'>
-		{% for category in category_list %}
-			<div class="b-files-category">
-				<a href="{{ category.get_absolute_url }}" class='b-files-category__url'>
-				{{ category.name }}
+
+	<ul class='b-files-categories'>
+		{% for category in categories %}
+			<li class='b-files-category'>
+				<a href='{{ category.get_absolute_url }}' class='b-files-category__link'>
+					{{ category.name }}
 				</a>
-				<p>
+				{% if category.description %}
+				<span class='b-files-category__descrription'>
 					{{ category.description }}
+				</span>
+				{% endif %}
 				</p>
-			</div>
+			</li>
 		{% endfor %}
-	</div>
+	</ul><!-- b-files-categories -->
+
+</div><!-- b-files -->
 {% endblock %}

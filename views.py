@@ -12,14 +12,14 @@ from django import http
 def files_categories(request):
 	context = {}
 	context['title'] = _('Files categories')
-	context['category_list'] = Category.objects.filter(public=True)
+	context['categories'] = Category.objects.filter(public=True)
 	return render_to_response('files/all.html', context, context_instance=RequestContext(request))
 
 
 def files_category(request, slug):
 	context = {}
-	context['files_category'] = get_object_or_404(Category, slug=slug)
-	context['title'] = context['files_category'].name
+	context['category'] = get_object_or_404(Category, slug=slug)
+	context['title'] = context['category'].name
 	context['category_list'] = Category.objects.filter(public=True)
 	return render_to_response('files/category.html', context, context_instance=RequestContext(request))
 
