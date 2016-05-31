@@ -4,7 +4,7 @@
 {% firstof size "800x400" as tsize %}
 
 <div class='b-media-slider m-tsize_{{ tsize }}'>
-	{% for media in media_group %}
+	{% for media in files %}
 		<div class='b-media-item'>
 			{% if media.type == "image" %}
 				<figure class='b-media-item__figure' itemscope itemtype='http://schema.org/ImageObject'>
