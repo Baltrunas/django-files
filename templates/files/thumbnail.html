@@ -5,7 +5,7 @@
 {% firstof size "400x300" as tsize %}
 
 <div class='b-media m-tsize_{{ tsize }}'>
-	{% for media in media_group %}
+	{% for media in files %}
 		<a href='{{ media.file.url }}' class='b-media-item' title='{{ media.name }}' rel='{{ media.group }}'>
 			{% if media.type == "image" %}
 				<figure class='b-media-item__figure'>
