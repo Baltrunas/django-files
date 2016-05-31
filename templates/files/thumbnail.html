@@ -3,27 +3,32 @@
 
 
 {% firstof size "400x300" as tsize %}
-
-<div class='b-files m-tsize_{{ tsize }}'>
+{# rel='{{ file.group }}' #}
+{# .m-files__thumbnail .b-file #}
+<div class='b-files m-tsize_{{ tsize }} m-files__thumbnail'>
 	{% for file in files %}
-		<a href='{{ file.file.url }}' class='b-file' title='{{ file.name }}' rel='{{ file.group }}'>
+		<a class='b-file' href='{{ file.file.url }}' title='{{ file.name }}'>
 			{% if file.type == "image" %}
 				<figure class='b-file__figure'>
 						{% thumbnail file.file tsize crop="center" as im %}
-							<img src='{{ im.url }}' class='b-file__img' alt='{{ file.name }}' title='{{ file.name }}'>
+							<img class='b-file__img' src='{{ im.url }}' alt='{{ file.name }}' title='{{ file.name }}'>
 						{% endthumbnail %}
-						<figcaption class='b-file__name'>
-							{{ file.name }}
+						<figcaption class='b-file__info'>
+							<strong class='b-file__name'>{{ file.name }}</strong>
+							{% if file.description %}
+								<div class='b-file__description'>{{ file.description }}</div>
+							{% endif %}
 						</figcaption>
 				</figure>
+
 			{% elif file.type == "video" %}
 				<video class='b-file__video' width='400' height='300' controls name='{{ file.name }}'>
 					<source src='{{ file.file.url }}' type='video/ogg'>
 					Пожалуйста обновите браузер.
 				</video>
 			{% elif file.type == "file" %}
-				<span class="b-{{ file.name }} ">{% trans "Download File" %}</span>
+				<span class='b-file__name'>{% trans "Download File" %}</span>
 			{% endif %}
 		</a>
 	{% endfor %}
-</div>
+</div><!-- b-files -->
