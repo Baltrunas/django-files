@@ -21,7 +21,7 @@
   padding: 0;
   position: relative;
 }
-.b-files .b-file .b-file__figure:after {
+.b-files .b-file__figure:after {
   content: " ";
   display: block;
   width: 100%;
