@@ -1,6 +1,8 @@
 from django.contrib import admin
 
 from .models import File
+from .models import FileKey
+from .models import FileProperty
 
 
 class FileAdmin(admin.ModelAdmin):
@@ -10,3 +12,5 @@ class FileAdmin(admin.ModelAdmin):
 	list_filter = ['public', 'group']
 
 admin.site.register(File, FileAdmin)
+admin.site.register(FileKey)
+admin.site.register(FileProperty)

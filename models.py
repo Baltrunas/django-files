@@ -28,6 +28,12 @@ class File(models.Model):
 	created_at = models.DateTimeField(_('Created at'), auto_now_add=True)
 	updated_at = models.DateTimeField(_('Updated at'), auto_now=True)
 
+	# def __init__(self, *args, **kwargs):
+
+	# 	super(SiteSettings, self).__init__(*args, **kwargs)
+	# 	if hasattr(self, 'site'):
+	# 		for es in self.site.extra_settings.all():
+	# 			setattr(self.site, es.key, es.value)
 
 	def ext(self):
 		filename = self.file.url.split('.')
@@ -58,14 +64,16 @@ class File(models.Model):
 		verbose_name_plural = _('Files')
 
 
-# FileProperty
-# 	key
+class FileKey(models.Model):
+	name = models.CharField(_('Name'), max_length=255)
+	key = models.SlugField(_('key'), unique=True)
 
-# FilePropertyFalue
-# 	key = FileProperty
-# 	value = text
+	def __unicode__(self):
+		return self.name
 
+class FileProperty(models.Model):
+	key = models.ForeignKey(FileKey, verbose_name=_('Key'))
+	value = models.CharField(verbose_name=_('Value'), max_length=2048)
 
-# latitude, longitude
-# ObjectFilesMasthave
-# 	FileProperty
+	def __unicode__(self):
+		return '%s: %s' (self.key.key, self.value)
