@@ -3,27 +3,28 @@
 
 {% firstof size "800x400" as tsize %}
 
-<div class='b-media-slider m-tsize_{{ tsize }}'>
-	{% for files in media_group %}
-		<div class='b-media-item'>
-			{% if media.type == "image" %}
-				<figure class='b-media-item__figure'>
-						{% thumbnail media.file tsize crop="center" as im %}
-							<img src='{{ im.url }}' class='b-media-item__img' alt='{{ media.name }}' title='{{ media.name }}'>
+<div class='b-file-slider m-tsize_{{ tsize }} m-files__slider'>
+	{% for file in files %}
+		<div class='b-file'>
+			{% if file.type == "image" %}
+				<figure class='b-file__figure'>
+						{% thumbnail file.file tsize crop="center" as im %}
+							<img src='{{ im.url }}' class='b-file__img' alt='{{ file.name }}' title='{{ file.name }}'>
 						{% endthumbnail %}
-						<figcaption class='b-media-item__title'>
-							<b>{{ media.name }}</b>
-							<p>{{ media.description|safe }}</p>
+						<figcaption class='b-file__info'>
+							<div class='b-file__title'>{{ file.name }}</div>
+							{% if file.description %}
+								<div class='b-file__description'>{{ file.description|safe }}</div>
+							{% endif %}
 						</figcaption>
-						<span class="b-media-item__count">{{ forloop.counter }} / {{ media_group.count }}</span>
 				</figure>
-			{% elif media.type == "video" %}
-				<video class='b-media-item__video' width='400' height='300' controls name='{{ media.name }}'>
-					<source src='{{ media.file.url }}' type='video/ogg'>
+			{% elif file.type == "video" %}
+				<video class='b-file__video' width='400' height='300' controls name='{{ file.name }}'>
+					<source src='{{ file.file.url }}' type='video/ogg'>
 					Пожалуйста обновите браузер.
 				</video>
-			{% elif media.type == "file" %}
-			<a href='{{ media.file.url }}'title='{{ media. }}' class='b-media-item__download'>{% trans "Download File" %}</a>
+			{% elif file.type == "file" %}
+			<a href='{{ file.file.url }}'title='{{ file. }}' class='b-file__download'>{% trans "Download File" %}</a>
 			{% endif %}
 		</div>
 	{% endfor %}
