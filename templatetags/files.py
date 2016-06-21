@@ -8,7 +8,6 @@ from ..models import File
 
 @register.simple_tag(takes_context=True)
 def files(context, files_object, group, tpl='files/thumbnail.html', size=''):
-	page = context['page']
 	context['size'] = size
 	content_type = ContentType.objects.get_for_model(type(files_object))
 	object_id = files_object.id
