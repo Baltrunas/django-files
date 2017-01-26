@@ -16,3 +16,7 @@ slider.html
 
 thumbnail_outside.html
 slider_outside.html
+
+
+{% load files %}
+{% files block_item 'awards' tpl='files/thumbnail.html' size='200x200' %}
