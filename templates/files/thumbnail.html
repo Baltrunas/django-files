@@ -7,11 +7,11 @@
 {# .m-files__thumbnail .b-file #}
 <div class='b-files m-tsize_{{ tsize }} m-files__thumbnail'>
 	{% for file in files %}
-		<a class='b-file' href='{{ file.file.url }}' title='{{ file.name }}'>
+		<a class='b-file' href='{{ file.file.url }}' title='{{ file.name }}' rel='group1' width='{{ im.width }}'>
 			{% if file.type == "image" %}
-				<figure class='b-file__figure'>
+				<figure class='b-file__figure' width='{{ im.width }}'>
 						{% thumbnail file.file tsize crop="center" as im %}
-							<img class='b-file__img' src='{{ im.url }}' alt='{{ file.name }}' title='{{ file.name }}'>
+							<img class='b-file__img' src='{{ im.url }}' alt='{{ file.name }}' title='{{ file.name }}' width='{{ im.width }}'>
 						{% endthumbnail %}
 						<figcaption class='b-file__info'>
 							<strong class='b-file__name'>{{ file.name }}</strong>
